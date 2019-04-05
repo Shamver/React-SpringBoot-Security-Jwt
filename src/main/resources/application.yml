@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: "c9kdtZ4l6AgUTt1OOtC5aetX+FwlaQtj92exzbwm28oMiOarjk4Twk7rrBikc8B7"
+    username: "1JQrJLS5kCF2sbM9L3mT5w=="
+    password: "kzFgh/OxvV8sA6UPnmKRiw=="
+  http:
+    encoding:
+      charset:    UTF-8
+  mvc:
+    view:
+      prefix:     /jsp/
+      suffix:     .jsp
+      
+server:
+  port : 8080
+  tomcat:
+    uri-encoding: UTF-8
+    
+mybatis:
+  config-location: classpath:mybatis-config.xml
+
+# App propertiese
+app:
+  jwtSecret: "JWTSuperSecretKey"
+  jwtExpirationInMs: 604800000
