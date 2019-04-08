@@ -3,8 +3,12 @@
 
 <mapper namespace="kr.co.upcoding.mapper.RoleMapper">
 
+    <select id="findById" parameterType="Long" resultType="RoleVO">
+        SELECT * FROM jwt_role where id= #{id}
+    </select>
+
     <select id="findByName" parameterType="String" resultType="RoleVO">
-        SELECT * FROM jwt_role where rolename= #{roleName}
+        select * from jwt_role where rolename= #{roleName}
     </select>
 
 </mapper>

@@ -19,7 +19,8 @@ server:
   servlet:
     session:
       cookie:
-        secure: true
+        secure: false
+        http-only: true
     
 mybatis:
   config-location: classpath:mybatis-config.xml

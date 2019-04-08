@@ -34,7 +34,6 @@ class Login extends React.Component {
         )
             .then((params) => {
                 console.log(params);
-                this.setCookie("Authorization",params.data.tokenType+" "+params.data.accessToken, 7);
             })
             .catch((err) => {
                 console.log(err);
