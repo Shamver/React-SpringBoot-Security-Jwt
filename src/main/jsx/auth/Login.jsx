@@ -33,10 +33,10 @@ class Login extends React.Component {
             axiosConfig
         )
             .then((params) => {
-                console.log(params);
+                console.log(params); // 로그인 성공
             })
             .catch((err) => {
-                console.log(err);
+                console.log("!"+err); // 로그인 실패
             })
     }
 
@@ -45,17 +45,6 @@ class Login extends React.Component {
             [e.target.name] : e.target.value
         });
     }
-
-    setCookie = (name, value, exp) => {
-        let date = new Date();
-        date.setTime(date.getTime() + exp*24*60*60*1000);
-        document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
-    }
-
-    getCookie = (name) => {
-        let value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-        return value? value[2] : null;
-    };
 
     render() {
         return (

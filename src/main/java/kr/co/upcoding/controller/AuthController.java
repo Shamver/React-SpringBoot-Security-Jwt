@@ -72,7 +72,16 @@ public class AuthController {
         cookie.setMaxAge(10000);
         response.addCookie(cookie);
         response.setHeader("Authorization","Bearer "+jwt);
-        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+//        return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
+        if(ResponseEntity.ok(new JwtAuthenticationResponse(jwt)) != null){
+            URI location = ServletUriComponentsBuilder
+                    .fromCurrentContextPath().path("/api/users/{username}")
+                    .buildAndExpand(loginRequest.getUsername()).toUri();
+
+            return ResponseEntity.created(location).body(new ApiResponse(true, "User login successfully"));
+        } else {
+            return ResponseEntity.ok(new ApiResponse(false, "User login failure"));
+        }
     }
 
     @PostMapping("/signup")
