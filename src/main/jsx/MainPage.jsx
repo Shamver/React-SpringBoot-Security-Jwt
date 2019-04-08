@@ -1,25 +1,21 @@
 import '../webapp/css/custom.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
  
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import { BrowserRouter } from 'react-router-dom';
+
+import App from './App.jsx';
+
  
 class MainPage extends React.Component {
  
     render() {
         return (
-        	<React.Fragment>
-	        	<div className="main">좆메인 페이지</div>
-	        	<form method="post" action="/testinsert">
-	        		<input type="text" name="name" />
-	        		<input type="text" name="nickname" />
-	        		<button type="submit">ㄱ</button>
-	        	</form>
-	        	<br />
-	        	<form method="post" action="/testdelete">
-	        		<input type="text" name="name" />
-	        		<button type="submit">ㄴ</button>
-	        	</form>
-        	</React.Fragment>
+			<BrowserRouter>
+				<App />
+			</BrowserRouter>
         );
     }
  

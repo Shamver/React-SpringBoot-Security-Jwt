@@ -15,12 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class MyController {
-	
-	@Autowired
-	TestMapper testMapper;
 
     // main.bundle.js 로 매핑할 경로 for SPA
-    @GetMapping(value = {"/"})
+    @GetMapping(value = {"/","/login","/signup","/errorpage/*","/errorpage/*/*","/test"})
     public String main(Model model, HttpServletRequest req) {
         model.addAttribute("pageName", "main");
         return "page";

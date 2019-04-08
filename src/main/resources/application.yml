@@ -16,6 +16,10 @@ server:
   port : 8080
   tomcat:
     uri-encoding: UTF-8
+  servlet:
+    session:
+      cookie:
+        secure: true
     
 mybatis:
   config-location: classpath:mybatis-config.xml

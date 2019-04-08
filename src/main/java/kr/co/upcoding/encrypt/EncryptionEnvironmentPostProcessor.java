@@ -17,32 +17,32 @@ public class EncryptionEnvironmentPostProcessor implements EnvironmentPostProces
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
         Properties props = new Properties();
         try {
-            // 암호화 한 문자열 보기 ( datasource의 정보를 하단 인자에 넣어주세요.)
-            if(!QuestionDataSourceEncryptedYN()) {
-                System.out.println("");
-                System.out.print("Enter Datasource username to encrypt : ");
-                String userName = sc.nextLine();
-                System.out.print("Enter Datasource password to encrypt : ");
-                String password = sc.nextLine();
-                System.out.print("Enter Datasource url to encrypt [ex) jdbc:<dbname>:<connection method>:@<ip>:<port>:<sid>] : ");
-                String url = sc.nextLine();
-
-                System.out.println("");
-                System.out.println("------- Encrypted Information -------");
-                System.out.println("encrypted spring.datasource.username : " + AES256Cipher.getInstance().AES_Encode(userName));
-                System.out.println("encrypted spring.datasource.password : " + AES256Cipher.getInstance().AES_Encode(password));
-                System.out.println("encrypted spring.datasource.url : " + AES256Cipher.getInstance().AES_Encode(url));
-                System.out.println("------- Encrypted Information -------");
-                System.out.println("");
-
-                System.out.println("Encrypted with phrases on the then modify the data source and restart the server again, please.");
-                System.out.println("");
-            }
-
+//            // 암호화 한 문자열 보기 ( datasource의 정보를 하단 인자에 넣어주세요.)
+//            if(!QuestionDataSourceEncryptedYN()) {
+//                System.out.println("");
+//                System.out.print("Enter Datasource username to encrypt : ");
+//                String userName = sc.nextLine();
+//                System.out.print("Enter Datasource password to encrypt : ");
+//                String password = sc.nextLine();
+//                System.out.print("Enter Datasource url to encrypt [ex) jdbc:<dbname>:<connection method>:@<ip>:<port>:<sid>] : ");
+//                String url = sc.nextLine();
+//
+//                System.out.println("");
+//                System.out.println("------- Encrypted Information -------");
+//                System.out.println("encrypted spring.datasource.username : " + AES256Cipher.getInstance().AES_Encode(userName));
+//                System.out.println("encrypted spring.datasource.password : " + AES256Cipher.getInstance().AES_Encode(password));
+//                System.out.println("encrypted spring.datasource.url : " + AES256Cipher.getInstance().AES_Encode(url));
+//                System.out.println("------- Encrypted Information -------");
+//                System.out.println("");
+//
+//                System.out.println("Encrypted with phrases on the then modify the data source and restart the server again, please.");
+//                System.out.println("");
+//            }
+//
                 props.put("spring.datasource.username", AES256Cipher.getInstance().AES_Decode(environment.getProperty("spring.datasource.username")));
                 props.put("spring.datasource.password", AES256Cipher.getInstance().AES_Decode(environment.getProperty("spring.datasource.password")));
                 props.put("spring.datasource.url", AES256Cipher.getInstance().AES_Decode(environment.getProperty("spring.datasource.url")));
-
+//
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -26,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Collections;
@@ -50,7 +52,8 @@ public class AuthController {
     JwtTokenProvider tokenProvider;
 
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@RequestBody UserVO loginRequest) {
+    public ResponseEntity<?> authenticateUser(@RequestBody UserVO loginRequest, HttpServletResponse response) {
+        System.out.println(loginRequest);
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginRequest.getUsernameOrEmail(),
@@ -60,6 +63,14 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = tokenProvider.generateToken(authentication);
+
+        final Cookie cookie = new Cookie("jwt", jwt);
+        cookie.setDomain("24localhost");
+        cookie.setSecure(true);
+        cookie.setHttpOnly(true);
+        cookie.setMaxAge(10000);
+        response.addCookie(cookie);
+        response.setHeader("Authorization","Bearer "+jwt);
         return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
     }
 

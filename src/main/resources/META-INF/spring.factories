@@ -1,2 +1,2 @@
-# post processor Àû¿ë
+# post processor ï¿½ï¿½ï¿½ï¿½
 org.springframework.boot.env.EnvironmentPostProcessor=kr.co.upcoding.encrypt.EncryptionEnvironmentPostProcessor

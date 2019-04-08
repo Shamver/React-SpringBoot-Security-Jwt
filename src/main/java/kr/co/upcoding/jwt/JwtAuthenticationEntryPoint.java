@@ -18,6 +18,11 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, org.springframework.security.core.AuthenticationException e) throws IOException, ServletException {
         logger.error("Responding with unauthorized error. Message - {}", e.getMessage());
-        httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
+        if(httpServletRequest.getMethod().equals("POST")){
+            httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
+        } else if(httpServletRequest.getMethod().equals("GET")){
+            String redirectUrl = "/errorpage/"+e.getMessage().toString()+"/"+HttpServletResponse.SC_UNAUTHORIZED;
+            httpServletResponse.sendRedirect(redirectUrl);
+        }
     }
 }

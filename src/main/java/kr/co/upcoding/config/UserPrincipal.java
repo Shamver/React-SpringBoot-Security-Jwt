@@ -2,7 +2,6 @@ package kr.co.upcoding.config;
 
 import kr.co.upcoding.vo.UserVO;
 import lombok.Data;
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,9 +17,7 @@ public class UserPrincipal implements UserDetails {
     private Long id;
     private  String username;
 
-    @JsonIgnore
     private String email;
-    @JsonIgnore
     private String password;
 
     private List<? extends GrantedAuthority> authorities;
